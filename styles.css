@@ -1,0 +1,68 @@
+* {
+    font-family: "Segoe UI";
+    color: white;
+}
+
+html {
+    margin: 0;;
+    padding: 0;
+    background-color: black;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator {
+    border: 12px solid rgb(255, 193, 78);
+    border-radius: 72px;
+    height: 724px;
+    width: 324px;
+    padding: 12px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.display {
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 40px;
+    margin: 3px;
+    padding: 3px;
+    height: 300px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 60px;
+}
+
+.row {
+    box-sizing: border-box;
+    padding: 6px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 6px;
+}
+
+button {
+    box-sizing: border-box;
+    border: none;
+    border-radius: 90px;
+    height: 69px;
+    width: 72px;
+    font-size: 33px;
+    background-color: rgb(39, 39, 39);
+}
+
+.light-grey {
+    background-color: grey;
+}
+
+.orange {
+    background-color: orange;
+}
