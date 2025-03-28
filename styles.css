@@ -59,10 +59,10 @@ button {
     background-color: rgb(39, 39, 39);
 }
 
-.light-grey {
+.row.one button {
     background-color: grey;
 }
 
-.orange {
+.row button:last-child {
     background-color: orange;
 }
