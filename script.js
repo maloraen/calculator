@@ -1,21 +1,21 @@
-/* function add() {
+/* function add(x, y) {
 
 }
 
-function subtract() {
+function subtract(x, y) {
 
 }
 
-function multiply() {
+function multiply(x, y) {
 
 }
 
-function divide() {
+function divide(x, y) {
 
 }
 
 function operate() {
-
+    
 }
 */
 
@@ -25,8 +25,8 @@ buttons.forEach((button) => {
     let char = button.textContent;
     button.addEventListener("click", () => {
         console.log(`${char}`);
-        if (button.classList.contains("number")) {
-            console.log("a number button was clicked");
+        if (button.classList.contains("number") || button.classList.contains("decimal")) {
+            console.log(`a ${button.classList.contains("number") ? "number" : "decimal"} button was clicked`);
             if (display.textContent == 0) {
                 display.textContent = char;
             } else if (display.classList.contains("result")) {
@@ -45,11 +45,14 @@ buttons.forEach((button) => {
             }
         }
         if (button.classList.contains("equals")) {
-            console.log("the equal button was clicked");
+            console.log("the equals button was clicked");
             let result = math.evaluate(display.textContent);
             console.log(`result: ${result}`)
             display.classList.add("result");
             display.textContent = result;
+        }
+        if (button.classList.contains("clear")) {
+            display.textContent = "0";
         }
     })
 });
