@@ -1,66 +1,101 @@
-/* function add(x, y) {
+const display = document.querySelector(".display");
+let firstNum = 0;
+let secondNum = 0;
+let operator = "";
 
+function add(x, y) {
+    return x + y;
 }
 
 function subtract(x, y) {
-
+    return x - y;
 }
 
 function multiply(x, y) {
-
+    return x * y;
 }
 
 function divide(x, y) {
+    return x / y;
+}
+
+function modulo(x, y) {
+    return x % y;
+}
+
+function updateFirstNum(x) {
+    firstNum == 0 ? firstNum = x : firstNum = `${firstNum}${x}`;
+    updateDisplay(firstNum, "", "");
+}
+
+function updateSecondNum(y) {
+    secondNum == 0 ? secondNum = y : secondNum = `${secondNum}${y}`;
+    updateDisplay (firstNum, secondNum, operator);
+}
+
+function updateOperator(op) {
+    operator = op;
+    updateDisplay(firstNum, "", op);
+}
+
+function updateDisplay(x, y, op) {
+    if (x < 0) x = `(${x})`;
+    if (y < 0) y = `(${y})`;
+    display.textContent = `${x}${op}${y}`;
+}
+
+function operate(x, y, op) {
 
 }
 
-function operate() {
-    
-}
-*/
-
-const display = document.querySelector(".display span");
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        
+    })
+})
+
+const numBtn = document.querySelectorAll(".number");
+numBtn.forEach((button) => {
+    let digit = button.textContent;
+    button.addEventListener("click", () => {
+        operator == "" ? updateFirstNum(digit) : updateSecondNum(digit);
+    })
+})
+
+const decimalBtn = document.querySelector(".decimal");
+decimalBtn.addEventListener("click", () => {
+    if (operator == ""){
+        if (!String(firstNum).includes(".")) updateFirstNum(".");
+    } else {
+        if (!String(secondNum).includes(".")) updateSecondNum(".");
+    } 
+})
+
+const integerBtn = document.querySelector(".integer");
+integerBtn.addEventListener("click", () => {
+    if (operator == "") {
+        firstNum > 0 ? firstNum -= (firstNum * 2) : firstNum -= (firstNum * 2);       
+        updateDisplay(firstNum, "", "") 
+    } else {
+        secondNum > 0 ? secondNum -= (secondNum * 2) : secondNum -= (secondNum * 2);       
+        updateDisplay(firstNum, secondNum, operator) 
+    }
+})
+
+const operatorBtn = document.querySelectorAll(".operator");
+operatorBtn.forEach((button) => {
     let char = button.textContent;
     button.addEventListener("click", () => {
-        console.log(`${char}`);
-        if (button.classList.contains("number") || button.classList.contains("decimal")) {
-            console.log(`a ${button.classList.contains("number") ? "number" : "decimal"} button was clicked`);
-            if (display.textContent == 0) {
-                display.textContent = char;
-            } else if (display.classList.contains("result")) {
-                display.classList.remove("result");
-                display.textContent = char;
-            }
-            else {
-                display.textContent += char;
-            }
-        }
-        if (button.classList.contains("operator")) {
-            console.log("an operator button was clicked");
-            display.textContent += char;
-            if (display.classList.contains("result")) {
-                display.classList.remove("result");
-            }
-        }
-        if (button.classList.contains("equals")) {
-            console.log("the equals button was clicked");
-            let result = math.evaluate(display.textContent);
-            console.log(`result: ${result}`)
-            display.classList.add("result");
-            display.textContent = result;
-        }
-        if (button.classList.contains("clear")) {
-            display.textContent = "0";
-        }
+        if (secondNum == "") updateOperator(char);
     })
-});
+})
 
+const clearBtn = document.querySelector(".clear");
+clearBtn.addEventListener("click", () => {
+    firstNum = "";
+    secondNum = "";
+    operator = "";
+    display.textContent = 0;
+})
 
-// when number button clicked, update display to show number
-// when opertor button clicked, update display to show number and operator
-// when another button clicked, update display to show number operator number
-// when equals button clicked, run calculation, update display to show result (and last operation above it ?)
-  // if another number is clicked, clear result, go back to step 1
-  // if another operator is clicked, show operator after result (and clear last operation), go back to step 3
