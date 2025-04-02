@@ -45,7 +45,23 @@ function updateDisplay(x, y, op) {
 }
 
 function operate(x, y, op) {
-
+    let result
+    if (op == "+") {
+        result = add(firstNum, secondNum);
+    }
+    if (op == "-") {
+        result = subtract(firstNum, secondNum);
+    }
+    if (op == "*") {
+        result = multiply(firstNum, secondNum);
+    }
+    if (op == "/") {
+        result = divide(firstNum, secondNum);
+    }
+    if (op == "%") {
+        result = modulo(firstNum, secondNum);
+    }
+    display.textContent = result;
 }
 
 const buttons = document.querySelectorAll("button");
@@ -99,3 +115,7 @@ clearBtn.addEventListener("click", () => {
     display.textContent = 0;
 })
 
+const equalsBtn = document.querySelector(".equals");
+equalsBtn.addEventListener("click", () => {
+    operate(firstNum, secondNum, operator)
+})
