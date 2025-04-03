@@ -42,7 +42,7 @@ body {
 
 .display span {
     font-size: 4rem;
-    overflow-x: scroll;
+    overflow: hidden;
     white-space: nowrap;
 }
 
