@@ -38,7 +38,12 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    font-size: 60px;
+}
+
+.display span {
+    font-size: 4rem;
+    overflow-x: scroll;
+    white-space: nowrap;
 }
 
 .row {
