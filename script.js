@@ -23,17 +23,13 @@ function modulo(x, y) {
 
 let firstNum = 0;
 function updateFirstNum(x) {
-    if (firstNum == 0 || firstNum == "") {
-        firstNum = x;
-    } else {
-        firstNum = `${firstNum}${x}`;
-    }
+    (firstNum === 0 || firstNum === "") ? firstNum = x : firstNum = `${firstNum}${x}`;
     updateDisplay(firstNum, "", "");
 }
 
 let secondNum = 0;
 function updateSecondNum(y) {
-    secondNum == 0 ? secondNum = y : secondNum = `${secondNum}${y}`;
+    (secondNum === 0 || secondNum === "") ? secondNum = y : secondNum = `${secondNum}${y}`;
     updateDisplay (firstNum, secondNum, operator);
 }
 
@@ -115,11 +111,37 @@ numBtn.forEach((button) => {
 
 const decimalBtn = document.querySelector(".decimal");
 decimalBtn.addEventListener("click", () => {
+    if (evaluatedWithEquals) {
+        firstNum = "0.";
+        secondNum = "";
+        operator = "";
+        evaluatedWithEquals = false;
+        evaluatedWithOperator = false;
+        updateDisplay(firstNum, "", "")
+        return;
+    }
+    if (evaluatedWithOperator) evaluatedWithOperator = false;
+
+    if (display.textContent == 0 && firstNum == "") {
+        updateFirstNum("0.")
+    }
     if (operator == ""){
+        if (firstNum === 0) {
+            updateFirstNum(".");
+        }
         if (!String(firstNum).includes(".")) updateFirstNum(".");
     } else {
-        if (!String(secondNum).includes(".")) updateSecondNum(".");
-    } 
+        if (!String(secondNum).includes(".")) {
+            if (secondNum == "") {
+                updateSecondNum("0.");
+            } else {
+                updateSecondNum(".");
+            }
+        }
+    }
+    console.log("firstNum:", firstNum);
+    console.log("operator:", operator);
+    console.log("secondNum:", secondNum);
 })
 
 const integerBtn = document.querySelector(".integer");
